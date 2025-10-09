@@ -62,7 +62,18 @@
   # enable hyprland
   programs.hyprland.enable = true;  
 
+  # enable 1password
+  programs._1password.enable = true;
+
+  # enable waybar
+  programs.waybar.enable = true;
+
+
+  # enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  # enable ssh
+  services.openssh.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -70,6 +81,12 @@
     wget
     git
   ];
+
+  # command aliases
+  programs.bash.shellAliases = {
+    cls = "clear";
+    rebuild = "sudo nixos-rebuild switch --flake .#evren";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

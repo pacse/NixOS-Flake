@@ -16,6 +16,8 @@
     vscode
     spotify
     prismlauncher
+    _1password
+    _1password-gui
   ];
 
   wayland.windowManager.hyprland = {
@@ -31,6 +33,14 @@
     };
   };
 
-home.stateVersion = "25.05";
+#  programs._1password-gui = {
+#    enable = true;
+#    polkitPolicyOwners = [ "evren" ];
+#  };
+
+  # enable waybar
+  packages.waybar.enable = true;
+
+  home.stateVersion = "25.05";
 
 }
