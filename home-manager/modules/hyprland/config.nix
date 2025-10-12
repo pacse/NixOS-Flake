@@ -15,7 +15,6 @@
       exec-once = [
         "mako"
         "waybar"
-        "spotify"
         "code"
       ];
 
@@ -102,5 +101,5 @@
   };
 
   # hide wallpaper text
-  services.hyprpaper.settings.splash = false;
+  services.hyprpaper.settings.splashText = "";
 }
