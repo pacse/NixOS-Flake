@@ -59,6 +59,9 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  # allow sudo without password
+  security.sudo.wheelNeedsPassword = false;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -95,7 +98,7 @@
   # command aliases
   programs.bash.shellAliases = {
     cls = "clear";
-    rebuild = "(sudo nixos-rebuild switch --flake /home/evren/flake#evren); rm .cache/tofi-drun";
+    rebuild = "(sudo nixos-rebuild switch --flake /home/evren/flake#evren); rm /home/evren/.cache/tofi-drun";
     shutdown = "sudo shutdown -h now";
     restart = "sudo shutdown -r now";
 
@@ -130,10 +133,10 @@
 
 
   # graphical login
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
+  #services.displayManager.sddm = {
+  #  enable = true;
+  #  wayland.enable = true;
+  #};
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -147,6 +150,12 @@
     open = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  # hopefully fix error on rebuild
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
 }

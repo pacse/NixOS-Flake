@@ -1,5 +1,5 @@
 {
-  programs.waybar.setting.topbar = {
+  programs.waybar.settings.topbar = {
     modules-right = [
       "privacy"
       "battery"

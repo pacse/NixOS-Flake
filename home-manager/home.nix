@@ -28,9 +28,14 @@
     _1password
     _1password-gui
 
+    just
+
+    hyprpaper
+
     # fonts
     noto-fonts-emoji
-    fira-code
+    nerd-fonts.geist-mono
+    nerd-fonts.fira-code
     fira-code-symbols
   ];
 
@@ -38,7 +43,7 @@
   # waybar config
   programs.waybar.enable = true;
 
-  
+
   # alacritty config
   programs.alacritty = {
     enable = true;
@@ -47,7 +52,7 @@
       selection.save_to_clipboard = true;
       general.import = [ "${pkgs.alacritty-theme}/nightfox.toml" ];
       window.opacity = 0.8;
-    }; 
+    };
   };
 
   # Mouse stuff

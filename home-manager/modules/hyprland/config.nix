@@ -19,17 +19,16 @@
         "code"
       ];
 
-      environment.sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-        LIBVA_DRIVER_NAME = "nvidia";
-        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      };
+      env = [
+        "NIXOS_OZONE_WL,1"
+        "LIBVA_DRIVER_NAME,nvidia"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+      ];
 
       general = {
         gaps_in = 5;
         gaps_out = 10;
 
-        border-size = 4;
 
         "col.active_border" = "rgba(139cffee) rgba(c144ffee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
@@ -43,18 +42,16 @@
 
       decoration = {
         rounding = 12;
-        rounding_power = 3;
 
         active_opacity = 1.0;
         inactive_opacity = 1.0;
 
-        shadow = {
-          enabled = true;
-          size = 3;
-          passes = 1;
+        # that did not fix it
+        shadow.render_power = 1;
 
-          vibrancy = 0.1696;
-        };
+        dim_inactive = true;
+        dim_strength = 0.25;
+
         blur = {
           passes = 3;
           size = 2;
@@ -94,18 +91,16 @@
       };
 
       dwindle = {
-        psuedotile = true;
+        pseudotile = true;
         preserve_split = true;
       };
 
       master = {
         new_status = "master";
       };
-
-      misc = {
-        force_default_wallpaper = 0;
-        disable_hyprland_logo = true;
-      };
     };
   };
+
+  # hide wallpaper text
+  services.hyprpaper.settings.splash = false;
 }
