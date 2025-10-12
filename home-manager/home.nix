@@ -11,9 +11,7 @@
 
   home.packages = with pkgs; [
     btop
-    alacritty
     tofi
-    waybar
     mako
 
     firefox
@@ -37,18 +35,12 @@
   ];
 
 
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = [ "evren" ];
-  };
-
-
   # waybar config
-  packages.waybar.enable = true;
+  programs.waybar.enable = true;
 
   
   # alacritty config
-  packages.alacritty = {
+  programs.alacritty = {
     enable = true;
     settings = {
       scrolling.multiplier = 5;

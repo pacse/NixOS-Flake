@@ -66,8 +66,12 @@
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
 
-  # enable 1password
+  # enable 1password & config
   programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "evren" ];
+  };
 
 
   # enable flakes
