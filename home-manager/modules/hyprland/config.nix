@@ -10,14 +10,14 @@
 
       "$mainMod" = "SUPER";
       "$terminal" = "alacritty";
-      "$menu" = "tofi-drun | xargs hyprctl dispatch exec --"
+      "$menu" = "tofi-drun | xargs hyprctl dispatch exec --";
 
       exec-once = [
         "mako"
         "waybar"
         "spotify"
         "code"
-      ]
+      ];
 
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";

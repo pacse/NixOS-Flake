@@ -3,5 +3,5 @@
         ./hyprland
         ./tofi.nix
         ./waybar
-    ]
+    ];
 }
