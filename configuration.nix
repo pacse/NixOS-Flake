@@ -2,11 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -14,7 +18,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "evren"; # Define your hostname.
+  networking.hostName = "EvNix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -53,24 +57,24 @@
     isNormalUser = true;
     description = "Evren Packard";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # enable hyprland
-  programs.hyprland.enable = true;  
+  programs.hyprland.enable = true;
+  programs.hyprlock.enable = true;
 
   # enable 1password
   programs._1password.enable = true;
 
-  # enable waybar
-  programs.waybar.enable = true;
-
 
   # enable flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # enable ssh
   services.openssh.enable = true;
@@ -80,12 +84,17 @@
   environment.systemPackages = with pkgs; [
     wget
     git
+    alacritty
+    tofi
   ];
 
   # command aliases
   programs.bash.shellAliases = {
     cls = "clear";
-    rebuild = "sudo nixos-rebuild switch --flake .#evren";
+    rebuild = "(sudo nixos-rebuild switch --flake /home/evren/flake#evren); rm .cache/tofi-drun";
+    shutdown = "sudo shutdown -h now";
+    restart = "sudo shutdown -r now";
+
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -114,5 +123,26 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+
+
+  # graphical login
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+
+    # true for laptop
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+
+    open = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
 }

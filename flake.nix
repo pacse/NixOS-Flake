@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "A not that basic flake"; # Thank you Creator34
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -13,18 +13,19 @@
     nixosConfigurations = {
       evren = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-	modules = [
-	  ./configuration.nix
+	      modules = [
+	        ./configuration.nix
 
-	  inputs.home-manager.nixosModules.home-manager
-	  {
-	    home-manager = {
-	      useGlobalPkgs = true;
-	      useUserPackages = true;
-	      users.evren = import ./home-manager/home.nix;
-	    };
-	  }
-	];
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              users.evren = import ./home-manager/home.nix;
+            };
+          }
+        ];
       };
     };
   };
