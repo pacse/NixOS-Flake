@@ -33,7 +33,8 @@ flatpak_reinstall() {
 
 # git
 alias gs='git status';
-alias gp='git pull';
+alias gpl='git pull';
+alias gps='git push';
 
 gc() {
     git commit -m "$1";
