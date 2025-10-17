@@ -38,3 +38,13 @@ alias gp='git pull';
 gc() {
     git commit -m "$1";
 }
+
+gd() {
+if [ -z "$1" ]; then
+    git diff;
+
+else
+    git diff "$1";
+
+fi
+}
