@@ -9,7 +9,7 @@
     enable = true;
     package = pkgs.waybar;
     style = ./style.css;
-    
+
     settings = {
       taskbar = {
         modules-center = [

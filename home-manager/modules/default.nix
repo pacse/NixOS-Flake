@@ -1,7 +1,9 @@
 {
-    imports = [
-        ./hyprland
-        ./tofi.nix
-        ./waybar
-    ];
+  imports = [
+    ./hyprland
+    ./waybar
+
+    ./tofi.nix
+    ./cursor.nix
+  ];
 }

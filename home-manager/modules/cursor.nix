@@ -1,3 +1,4 @@
+{ inputs, pkgs, ... }:
 {
   # Mouse stuff
   home.pointerCursor = {

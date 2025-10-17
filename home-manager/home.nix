@@ -17,7 +17,6 @@
     firefox
     vesktop
     cloudflare-warp
-    spotify
     prismlauncher
 
 
@@ -25,10 +24,7 @@
     python3
     gh
 
-    _1password
     _1password-gui
-
-    just
 
     hyprpaper
 
@@ -37,12 +33,21 @@
     nerd-fonts.geist-mono
     nerd-fonts.fira-code
     fira-code-symbols
+
+    # cursor
+    bibata-cursors
+
+    # alacritty themes
+    alacritty-theme
   ];
 
 
-  # waybar config
-  programs.waybar.enable = true;
-
+  # get tofi to recognise spotify,
+  # that was a bit annoying
+  home.file.".local/share/applications/com.spotify.Client.desktop".source =
+    "${pkgs.writeShellScriptBin "resolve-flatpak-path" ''
+      echo /var/lib/flatpak/exports/share/applications/com.spotify.Client.desktop
+    ''}";
 
   # alacritty config
   programs.alacritty = {
@@ -54,30 +59,6 @@
       window.opacity = 0.8;
     };
   };
-
-  # Mouse stuff
-    home.pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-    };
-    gtk = {
-      enable = true;
-      cursorTheme = {
-        name = "Bibata-Modern-Classic";
-        package = pkgs.bibata-cursors;
-      };
-      gtk3.extraConfig = {
-        "gtk-cursor-theme-name" = "Bibata-Modern-Classic";
-      };
-      gtk4.extraConfig = {
-        Settings = ''
-          gtk-cursor-theme-name=Bibata-Modern-Classic
-        '';
-      };
-    };
-
 
   home.stateVersion = "25.05";
 
