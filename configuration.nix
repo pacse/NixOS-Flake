@@ -95,15 +95,6 @@
     tofi
   ];
 
-  # command aliases
-  programs.bash.shellAliases = {
-    cls = "clear";
-    rebuild = "(sudo nixos-rebuild switch --flake /home/evren/flake#evren); rm /home/evren/.cache/tofi-drun";
-    shutdown = "sudo shutdown -h now";
-    restart = "sudo shutdown -r now";
-
-  };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
