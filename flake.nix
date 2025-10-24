@@ -3,10 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
 
   outputs = {...}@inputs: {
@@ -15,6 +18,10 @@
         system = "x86_64-linux";
 	      modules = [
 	        ./configuration.nix
+
+          (_: {
+            nixpkgs.overlays = [ inputs.alacritty-theme.overlays.default ];
+          })
 
           inputs.home-manager.nixosModules.home-manager
           {
