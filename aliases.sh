@@ -6,6 +6,7 @@ SPOTIFY_APP="com.spotify.Client"
 
 # simple stuff aliases
 alias cls="clear" # tehehe
+alias hl="hyprland"
 alias sd="echo 'Shutting down . . .'; sudo shutdown -h now"
 alias rs="echo 'Restarting . . .'; sudo shutdown -r now"
 
@@ -93,5 +94,6 @@ gacp() {
         git add "${@:2}" # allow multiple files
         git commit -m "$1"
         git push
+        git status
     fi
 }
