@@ -65,7 +65,7 @@ gd() {
         git diff
 
     else
-        git diff "$1"
+        git diff "$@"
 
     fi
 }
@@ -77,5 +77,21 @@ ga() {
     else
         git add "$@"
 
+    fi
+}
+
+gacp() {
+    if [ -z "$1" ]; then
+        echo "Please provide a commit message."
+        return 1
+
+    elif [ -z "$2" ]; then
+        echo "Please provide a file to add."
+        return 1
+
+    else
+        git add "${@:2}" # allow multiple files
+        git commit -m "$1"
+        git push
     fi
 }
