@@ -16,6 +16,7 @@
         "mako"
         "waybar"
         "code"
+        "flatpak run com.spotify.Client"
       ];
 
       env = [
@@ -96,9 +97,12 @@
       master = {
         new_status = "master";
       };
+
+      misc = {
+        # hide wallpaper text
+        disable_splash_rendering = true;
+        force_default_wallpaper = -1;
+      };
     };
   };
-
-  # hide wallpaper text
-  services.hyprpaper.settings.splashText = "";
 }
