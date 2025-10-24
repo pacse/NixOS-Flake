@@ -70,7 +70,6 @@
   programs.hyprlock.enable = true;
 
   # enable 1password & config
-  programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ "evren" ];
@@ -105,9 +104,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
