@@ -100,7 +100,7 @@
   };
 
   # Disable PulseAudio bc of PipeWire
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
