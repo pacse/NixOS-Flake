@@ -17,6 +17,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "snd-usb-audio" ];
 
   networking.hostName = "EvNix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -56,7 +57,7 @@
   users.users.evren = {
     isNormalUser = true;
     description = "Evren Packard";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
   };
 
   # allow sudo without password
@@ -87,6 +88,19 @@
 
   # enable flatpak for spotify
   services.flatpak.enable = true;
+
+  # Enable sound with pipewire
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications:
+    # jack.enable = true;
+  };
+
+  # Disable PulseAudio bc of PipeWire
+  hardware.pulseaudio.enable = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
