@@ -12,6 +12,7 @@
       "$mainMod, UP, swapwindow, u"
       "$mainMod, DOWN, swapwindow, d"
 
+      "$mainMod, F, togglefloating"
 
       "$mainMod, 1, exec, hyprctl dispatch workspace 1"
       "$mainMod, 2, exec, hyprctl dispatch workspace 2"
