@@ -20,7 +20,7 @@ rebuild() {
         rm -f $HOME/.cache/tofi-drun
         echo "Rebuild successful :)"
     else
-        echo "Rebuild failed!"
+        echo "Rebuild failed :("
         return 1
     fi
 }
