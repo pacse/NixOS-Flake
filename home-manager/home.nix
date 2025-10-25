@@ -23,6 +23,7 @@
     vscode
     python3
     sqlite
+    evtest
 
     gh
 
@@ -30,7 +31,6 @@
     cmatrix
 
     pavucontrol  # GUI audio control
-    pamixer      # CLI volume control
 
 
     _1password-gui
