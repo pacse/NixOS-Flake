@@ -24,6 +24,10 @@
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
 
+      cursor = {
+        no_warps = true;
+      };
+
       general = {
         gaps_in = 5;
         gaps_out = 10;
