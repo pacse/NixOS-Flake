@@ -23,7 +23,7 @@
       "$mainMod, 8, exec, hyprctl dispatch workspace 8"
       "$mainMod, 9, exec, hyprctl dispatch workspace 9"
       "$mainMod, 0, exec, hyprctl dispatch workspace 10"
-      
+
       # move windows between workspaces
       "$mainMod+SHIFT, 1, movetoworkspace, 1"
       "$mainMod+SHIFT, 2, movetoworkspace, 2"
@@ -37,11 +37,19 @@
       "$mainMod+SHIFT, 0, movetoworkspace, 10"
     ];
 
+    bindl = [
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%+"  # increases by 5% for some reason
+      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%-"
+      ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    ];
+
+
     binds = {
-    drag_threshold = 10;
+      drag_threshold = 10;
     };
+
     bindm = [
-    "$mainMod, mouse:272, movewindow"
+      "$mainMod, mouse:272, movewindow"
     ];
   };
 }
