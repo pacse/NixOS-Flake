@@ -89,6 +89,9 @@
   # enable flatpak for spotify
   services.flatpak.enable = true;
 
+  # enable cloudflare warp
+  services.cloudflare-warp.enable = true;
+
   # Enable sound with pipewire
   services.pipewire = {
     enable = true;
