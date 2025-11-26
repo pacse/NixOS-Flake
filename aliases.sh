@@ -13,11 +13,19 @@ alias rs="echo 'Restarting . . .'; sudo shutdown -r now"
 alias ll='ls -la --color=auto'
 alias la='ls -A --color=auto'
 
+alias cmat='cmatrix -s -b -u 6'
+
+# Cloudflare WARP
+alias won='warp-cli connect'
+alias woff='warp-cli disconnect'
+alias wstatus='warp-cli status'
+
 
 # nix aliases
 rebuild() {
     if sudo nixos-rebuild switch --flake $HOME/flake#evren; then
         rm -f $HOME/.cache/tofi-drun
+        cls
         echo "Rebuild successful :)"
     else
         echo "Rebuild failed :("
@@ -25,7 +33,18 @@ rebuild() {
     fi
 }
 
-alias tidy="nix-collect-garbage --delete-older-than 7d"
+tidy() {
+    if [ -z "$1" ]; then
+        nix-collect-garbage --delete-older-than 7d
+
+    elif [ "$1" == "all" ]; then
+        nix-collect-garbage --delete-old
+    else
+        nix-collect-garbage --delete-older-than "$1"
+        return 1
+    fi
+}
+
 alias up="nix flake update && rebuild"
 alias rb="rebuild"
 
