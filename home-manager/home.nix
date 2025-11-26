@@ -21,9 +21,10 @@
 
 
     vscode
-    python3
-    sqlite
     evtest
+    sqlite
+
+    python3
 
     gh
 
@@ -31,7 +32,9 @@
     cmatrix
 
     pavucontrol  # GUI audio control
+    playerctl    # Media player control
 
+    numbat
 
     _1password-gui
 
@@ -45,6 +48,43 @@
 
     # cursor
     bibata-cursors
+
+    # screenshots
+    grim
+    slurp
+    wl-clipboard
+
+    # spotify mute toggle
+    (writeShellScriptBin "spotify-mute-toggle" ''
+
+      SVOL="/tmp/spotify_volume_level"
+      CVOL=$(playerctl -p spotify volume)
+
+      if [ "$CVOL" = "0.000000" ]; then
+
+        if [ -f "$SVOL" ]; then
+            playerctl -p spotify volume $(cat "$SVOL")
+        else
+            playerctl -p spotify volume 0.5
+        fi
+
+      else
+          echo "$CVOL" > "$SVOL"
+          playerctl -p spotify volume 0.0
+      fi
+
+    '')
+
+    # toggle spotify focus or launch
+    (writeShellScriptBin "spotify-focus-toggle" ''
+      CURRENT_CLASS=$(hyprctl activewindow -j | grep -o '"class": "[^"]*"' | cut -d'"' -f4)
+
+      if [ "$CURRENT_CLASS" = "Spotify" ]; then
+        hyprctl dispatch focuscurrentorlast
+      else
+        hyprctl dispatch focuswindow class:Spotify || flatpak run com.spotify.Client
+      fi
+    '')
   ];
 
 
