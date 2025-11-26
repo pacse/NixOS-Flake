@@ -6,7 +6,8 @@
 
     "wlr/taskbar" = {
       icon-size = 24;
-      on-click = "minimize-raise";
+      on-click = "activate";
+      tooltip = false;
     };
 
     height = 48;
